@@ -10,6 +10,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:html_editor_enhanced/html_editor.dart'
     hide NavigationActionPolicy, UserScript, ContextMenu;
+import 'package:html_editor_enhanced/l10n/app_localizations.dart';
 import 'package:html_editor_enhanced/utils/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -169,7 +170,8 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                   },
                   shouldOverrideUrlLoading: (controller, action) async {
                     if (!action.request.url.toString().contains(filePath)) {
-                      return (await widget.callbacks?.onNavigationRequestMobile
+                      return (await widget
+                                  .callbacks?.onNavigationRequestMobile
                                   ?.call(action.request.url.toString()))
                               as NavigationActionPolicy? ??
                           NavigationActionPolicy.ALLOW;
@@ -260,7 +262,8 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           },
                       ''';
                       if (widget.plugins.isNotEmpty) {
-                        summernoteToolbar = summernoteToolbar + "['plugins', [";
+                        summernoteToolbar =
+                            summernoteToolbar + "['plugins', [";
                         for (var p in widget.plugins) {
                           summernoteToolbar = summernoteToolbar +
                               (p.getToolbarString().isNotEmpty
@@ -500,12 +503,13 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           }
                         });
                       }
-                      widget.controller.editorController!.addJavaScriptHandler(
-                          handlerName: 'totalChars',
-                          callback: (keyCode) {
-                            widget.controller.characterCount =
-                                keyCode.first as int;
-                          });
+                      widget.controller.editorController!
+                          .addJavaScriptHandler(
+                              handlerName: 'totalChars',
+                              callback: (keyCode) {
+                                widget.controller.characterCount =
+                                    keyCode.first as int;
+                              });
                       //disable editor if necessary
                       if (widget.htmlEditorOptions.disabled &&
                           !callbacksInitialized) {
@@ -526,7 +530,8 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                       controller.addJavaScriptHandler(
                           handlerName: 'onChangeContent',
                           callback: (contents) {
-                            if (widget.htmlEditorOptions.shouldEnsureVisible &&
+                            if (widget
+                                    .htmlEditorOptions.shouldEnsureVisible &&
                                 Scrollable.of(context) != null) {
                               Scrollable.of(context)!.position.ensureVisible(
                                     context.findRenderObject()!,

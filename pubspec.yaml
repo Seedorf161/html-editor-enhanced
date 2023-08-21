@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   # webview plugin
   flutter_inappwebview: ^5.7.2+3
   # plugin to get webview's visible fraction for keyboard height adjustment
@@ -32,6 +34,7 @@ dependencies:
   pedantic: ^1.11.1
   # plugin for @internal annotation
   meta: '>=1.0.0 <2.0.0'
+  intl: any
 
 dev_dependencies:
   flutter_test:

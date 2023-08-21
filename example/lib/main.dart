@@ -74,6 +74,7 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
                   //initialText: "<p>text content initial, if any</p>",
                 ),
                 htmlToolbarOptions: HtmlToolbarOptions(
+                  locale: Locale('pt'),
                   toolbarPosition: ToolbarPosition.aboveEditor, //by default
                   toolbarType: ToolbarType.nativeScrollable, //by default
                   onButtonPressed:
