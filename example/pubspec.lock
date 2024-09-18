@@ -97,11 +97,10 @@ packages:
   flutter_inappwebview:
     dependency: transitive
     description:
-      path: flutter_inappwebview
-      ref: master
-      resolved-ref: caa355f66723630f9c9ce52ac8d592455dd37abb
-      url: "https://github.com/GabriellArthur/flutter_inappwebview.git"
-    source: git
+      name: flutter_inappwebview
+      sha256: "3e9a443a18ecef966fb930c3a76ca5ab6a7aafc0c7b5e14a4a850cf107b09959"
+      url: "https://pub.dev"
+    source: hosted
     version: "6.0.0"
   flutter_inappwebview_android:
     dependency: transitive
