@@ -1816,6 +1816,10 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       controller: text,
                                       focusNode: textFocus,
                                       textInputAction: TextInputAction.next,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         hintText: 'Text',
@@ -2041,6 +2045,10 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       controller: url,
                                       focusNode: urlFocus,
                                       textInputAction: TextInputAction.done,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         hintText: context.language.url,
@@ -2207,6 +2215,10 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                     controller: url,
                                     focusNode: urlFocus,
                                     textInputAction: TextInputAction.done,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(fontSize: 14),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: 'URL',
@@ -2368,6 +2380,10 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                     controller: url,
                                     focusNode: urlFocus,
                                     textInputAction: TextInputAction.done,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(fontSize: 14),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: 'URL',
@@ -2529,6 +2545,10 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                     controller: url,
                                     focusNode: urlFocus,
                                     textInputAction: TextInputAction.done,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(fontSize: 14),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: 'URL',
