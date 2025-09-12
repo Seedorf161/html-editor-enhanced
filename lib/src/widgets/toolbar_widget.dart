@@ -1833,6 +1833,9 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       controller: url,
                                       focusNode: urlFocus,
                                       textInputAction: TextInputAction.done,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         hintText: 'URL',
@@ -1963,7 +1966,15 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       TextFormField(
                                           controller: filename,
                                           readOnly: true,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
                                           decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            enabledBorder: InputBorder.none,
+                                            errorBorder: InputBorder.none,
+                                            disabledBorder: InputBorder.none,
                                             prefixIcon: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
                                                   backgroundColor:
@@ -2012,7 +2023,6 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                                     height: 0, width: 0),
                                             errorText: validateFailed,
                                             errorMaxLines: 2,
-                                            border: InputBorder.none,
                                           )),
                                     if (widget
                                         .htmlToolbarOptions.allowImagePicking)
@@ -2131,7 +2141,15 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                   TextFormField(
                                       controller: filename,
                                       readOnly: true,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
                                       decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
                                         prefixIcon: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor: Theme.of(context)
@@ -2176,7 +2194,6 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                             : Container(height: 0, width: 0),
                                         errorText: validateFailed,
                                         errorMaxLines: 2,
-                                        border: InputBorder.none,
                                       )),
                                   SizedBox(height: 20),
                                   Text('URL',
@@ -2284,7 +2301,15 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                   TextFormField(
                                       controller: filename,
                                       readOnly: true,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
                                       decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
                                         prefixIcon: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor: Theme.of(context)
@@ -2329,7 +2354,6 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                             : Container(height: 0, width: 0),
                                         errorText: validateFailed,
                                         errorMaxLines: 2,
-                                        border: InputBorder.none,
                                       )),
                                   SizedBox(height: 20),
                                   Text('URL',
@@ -2437,7 +2461,15 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                   TextFormField(
                                       controller: filename,
                                       readOnly: true,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
                                       decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
                                         prefixIcon: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor: Theme.of(context)
@@ -2482,7 +2514,6 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                             : Container(height: 0, width: 0),
                                         errorText: validateFailed,
                                         errorMaxLines: 2,
-                                        border: InputBorder.none,
                                       )),
                                   SizedBox(height: 20),
                                   Text('URL',
