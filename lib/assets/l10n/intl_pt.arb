@@ -11,5 +11,7 @@
     "textToDisplay": "Texto a ser exibido",
     "text": "Texto",
     "enterUrl": "Por favor, insira uma URL!",
-    "openNewWindow": "Abrir em nova janela"
+    "openNewWindow": "Abrir em nova janela",
+    "insertTable": "Inserir tabela",
+    "okay": "OK"
 }

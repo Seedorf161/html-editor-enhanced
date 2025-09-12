@@ -1796,141 +1796,148 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 await showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return PointerInterceptor(
-                        child: StatefulBuilder(builder:
-                            (BuildContext context, StateSetter setState) {
-                          return AlertDialog(
-                            title: Text(context.language.insertLink),
-                            scrollable: true,
-                            content: Form(
-                              key: formKey,
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(context.language.textToDisplay,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    SizedBox(height: 10),
-                                    TextField(
-                                      controller: text,
-                                      focusNode: textFocus,
-                                      textInputAction: TextInputAction.next,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(fontSize: 14),
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        hintText: context.language.text,
+                      return Localizations(
+                        delegates: S.localizationsDelegates,
+                        locale: widget.htmlToolbarOptions.locale,
+                        child: PointerInterceptor(
+                          child: StatefulBuilder(builder:
+                              (BuildContext context, StateSetter setState) {
+                            return AlertDialog(
+                              title: Text(context.language.insertLink),
+                              scrollable: true,
+                              content: Form(
+                                key: formKey,
+                                child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(context.language.textToDisplay,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      SizedBox(height: 10),
+                                      TextField(
+                                        controller: text,
+                                        focusNode: textFocus,
+                                        textInputAction: TextInputAction.next,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.copyWith(fontSize: 14),
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          hintText: context.language.text,
+                                        ),
+                                        onSubmitted: (_) {
+                                          urlFocus.requestFocus();
+                                        },
                                       ),
-                                      onSubmitted: (_) {
-                                        urlFocus.requestFocus();
-                                      },
-                                    ),
-                                    SizedBox(height: 20),
-                                    Text(context.language.url,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    SizedBox(height: 10),
-                                    TextFormField(
-                                      controller: url,
-                                      focusNode: urlFocus,
-                                      textInputAction: TextInputAction.done,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(fontSize: 14),
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        hintText: context.language.url,
+                                      SizedBox(height: 20),
+                                      Text(context.language.url,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      SizedBox(height: 10),
+                                      TextFormField(
+                                        controller: url,
+                                        focusNode: urlFocus,
+                                        textInputAction: TextInputAction.done,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.copyWith(fontSize: 14),
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          hintText: context.language.url,
+                                        ),
+                                        validator: (String? value) {
+                                          if (value == null || value.isEmpty) {
+                                            return context.language.enterUrl;
+                                          }
+                                          return null;
+                                        },
                                       ),
-                                      validator: (String? value) {
-                                        if (value == null || value.isEmpty) {
-                                          return context.language.enterUrl;
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        SizedBox(
-                                          height: 48.0,
-                                          width: 24.0,
-                                          child: Checkbox(
-                                            value: openNewTab,
-                                            activeColor: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall
-                                                      ?.color,
-                                            onChanged: (bool? value) {
+                                      Row(
+                                        children: <Widget>[
+                                          SizedBox(
+                                            height: 48.0,
+                                            width: 24.0,
+                                            child: Checkbox(
+                                              value: openNewTab,
+                                              activeColor: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall
+                                                  ?.color,
+                                              onChanged: (bool? value) {
+                                                setState(() {
+                                                  openNewTab = value!;
+                                                });
+                                              },
+                                            ),
+                                          ),
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .dialogTheme
+                                                        .backgroundColor,
+                                                padding: EdgeInsets.only(
+                                                    left: 5, right: 5),
+                                                elevation: 0.0),
+                                            onPressed: () {
                                               setState(() {
-                                                openNewTab = value!;
+                                                openNewTab = !openNewTab;
                                               });
                                             },
+                                            child: Text(
+                                                context.language.openNewWindow,
+                                                style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall
+                                                        ?.color)),
                                           ),
-                                        ),
-                                        ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Theme.of(context)
-                                                  .dialogTheme
-                                                  .backgroundColor,
-                                              padding: EdgeInsets.only(
-                                                  left: 5, right: 5),
-                                              elevation: 0.0),
-                                          onPressed: () {
-                                            setState(() {
-                                              openNewTab = !openNewTab;
-                                            });
-                                          },
-                                          child: Text(context.language.openNewWindow,
-                                              style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall
-                                                      ?.color)),
-                                        ),
-                                      ],
-                                    ),
-                                  ]),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Cancel'),
+                                        ],
+                                      ),
+                                    ]),
                               ),
-                              TextButton(
-                                onPressed: () async {
-                                  if (formKey.currentState!.validate()) {
-                                    var proceed = await widget
-                                            .htmlToolbarOptions
-                                            .linkInsertInterceptor
-                                            ?.call(
-                                                text.text.isEmpty
-                                                    ? url.text
-                                                    : text.text,
-                                                url.text,
-                                                openNewTab) ??
-                                        true;
-                                    if (proceed) {
-                                      widget.controller.insertLink(
-                                        text.text.isEmpty
-                                            ? url.text
-                                            : text.text,
-                                        url.text,
-                                        openNewTab,
-                                      );
-                                    }
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
                                     Navigator.of(context).pop();
-                                  }
-                                },
-                                child: Text('OK'),
-                              )
-                            ],
-                          );
-                        }),
+                                  },
+                                  child: Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    if (formKey.currentState!.validate()) {
+                                      var proceed = await widget
+                                              .htmlToolbarOptions
+                                              .linkInsertInterceptor
+                                              ?.call(
+                                                  text.text.isEmpty
+                                                      ? url.text
+                                                      : text.text,
+                                                  url.text,
+                                                  openNewTab) ??
+                                          true;
+                                      if (proceed) {
+                                        widget.controller.insertLink(
+                                          text.text.isEmpty
+                                              ? url.text
+                                              : text.text,
+                                          url.text,
+                                          openNewTab,
+                                        );
+                                      }
+                                      Navigator.of(context).pop();
+                                    }
+                                  },
+                                  child: Text('OK'),
+                                )
+                              ],
+                            );
+                          }),
+                        ),
                       );
                     });
               }
@@ -2612,58 +2619,62 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 await showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return PointerInterceptor(
-                        child: StatefulBuilder(builder:
-                            (BuildContext context, StateSetter setState) {
-                          return AlertDialog(
-                            title: Text('Insert Table'),
-                            scrollable: true,
-                            content: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  NumberPicker(
-                                    value: currentRows,
-                                    minValue: 1,
-                                    maxValue: 10,
-                                    onChanged: (value) =>
-                                        setState(() => currentRows = value),
-                                  ),
-                                  Text('x'),
-                                  NumberPicker(
-                                    value: currentCols,
-                                    minValue: 1,
-                                    maxValue: 10,
-                                    onChanged: (value) =>
-                                        setState(() => currentCols = value),
-                                  ),
-                                ]),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed: () async {
-                                  if (kIsWeb) {
-                                    widget.controller.insertTable(
-                                        '${currentRows}x$currentCols');
-                                  } else {
-                                    await widget.controller.editorController!
-                                        .evaluateJavascript(
-                                            source:
-                                                "\$('#summernote-2').summernote('insertTable', '${currentRows}x$currentCols');");
-                                  }
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('OK'),
-                              )
-                            ],
-                          );
-                        }),
+                      return Localizations(
+                        delegates: S.localizationsDelegates,
+                        locale: widget.htmlToolbarOptions.locale,
+                        child: PointerInterceptor(
+                          child: StatefulBuilder(builder:
+                              (BuildContext context, StateSetter setState) {
+                            return AlertDialog(
+                              title: Text(context.language.insertTable),
+                              scrollable: true,
+                              content: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    NumberPicker(
+                                      value: currentRows,
+                                      minValue: 1,
+                                      maxValue: 10,
+                                      onChanged: (value) =>
+                                          setState(() => currentRows = value),
+                                    ),
+                                    Text('x'),
+                                    NumberPicker(
+                                      value: currentCols,
+                                      minValue: 1,
+                                      maxValue: 10,
+                                      onChanged: (value) =>
+                                          setState(() => currentCols = value),
+                                    ),
+                                  ]),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(context.language.cancel),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    if (kIsWeb) {
+                                      widget.controller.insertTable(
+                                          '${currentRows}x$currentCols');
+                                    } else {
+                                      await widget.controller.editorController!
+                                          .evaluateJavascript(
+                                              source:
+                                                  "\$('#summernote-2').summernote('insertTable', '${currentRows}x$currentCols');");
+                                    }
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(context.language.okay),
+                                )
+                              ],
+                            );
+                          }),
+                        ),
                       );
                     });
               }

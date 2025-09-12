@@ -11,5 +11,7 @@
     "textToDisplay": "Text to display",
     "text": "Text",
     "enterUrl": "Please enter a URL!",
-    "openNewWindow": "Open in new window"
+    "openNewWindow": "Open in new window",
+    "insertTable": "Insert Table",
+    "okay": "Okay"
 }
