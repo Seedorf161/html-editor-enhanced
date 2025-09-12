@@ -1835,7 +1835,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       textInputAction: TextInputAction.done,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium,
+                                          .bodySmall
+                                          ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         hintText: 'URL',
@@ -1968,7 +1969,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                           readOnly: true,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyMedium,
+                                              .bodySmall
+                                              ?.copyWith(fontSize: 14),
                                           decoration: InputDecoration(
                                             border: InputBorder.none,
                                             focusedBorder: InputBorder.none,
@@ -2143,7 +2145,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       readOnly: true,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium,
+                                          .bodySmall
+                                          ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
                                         focusedBorder: InputBorder.none,
@@ -2303,7 +2306,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       readOnly: true,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium,
+                                          .bodySmall
+                                          ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
                                         focusedBorder: InputBorder.none,
@@ -2463,7 +2467,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       readOnly: true,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium,
+                                          .bodySmall
+                                          ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
                                         focusedBorder: InputBorder.none,
