@@ -46,4 +46,10 @@ class SPt extends S {
 
   @override
   String get openNewWindow => 'Abrir em nova janela';
+
+  @override
+  String get insertTable => 'Inserir tabela';
+
+  @override
+  String get okay => 'OK';
 }

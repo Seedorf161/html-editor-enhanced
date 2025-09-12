@@ -172,6 +172,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Open in new window'**
   String get openNewWindow;
+
+  /// No description provided for @insertTable.
+  ///
+  /// In en, this message translates to:
+  /// **'Insert Table'**
+  String get insertTable;
+
+  /// No description provided for @okay.
+  ///
+  /// In en, this message translates to:
+  /// **'Okay'**
+  String get okay;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

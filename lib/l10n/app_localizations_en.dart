@@ -46,4 +46,10 @@ class SEn extends S {
 
   @override
   String get openNewWindow => 'Open in new window';
+
+  @override
+  String get insertTable => 'Insert Table';
+
+  @override
+  String get okay => 'Okay';
 }
