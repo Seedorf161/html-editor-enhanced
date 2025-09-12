@@ -191,6 +191,7 @@ class HtmlToolbarOptions {
     this.gridViewVerticalSpacing = 5,
     this.allowImagePicking = true,
     this.locale = const Locale('en'),
+    this.themeData,
   });
 
   /// Allows you to set the allowed extensions when a user inserts an audio file
@@ -411,6 +412,8 @@ class HtmlToolbarOptions {
   final bool allowImagePicking;
 
   final Locale locale;
+
+  final ThemeData? themeData;
 }
 
 /// Other options such as the height of the widget and the decoration surrounding it

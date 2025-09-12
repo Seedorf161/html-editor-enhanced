@@ -124,6 +124,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @chooseImageOrUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Please either choose an image or enter an image URL!'**
+  String get chooseImageOrUrl;
+
+  /// No description provided for @enterImageUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter an image URL!'**
+  String get enterImageUrl;
+
+  /// No description provided for @eitherImageOrUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Please input either an image or an image URL, not both!'**
+  String get eitherImageOrUrl;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

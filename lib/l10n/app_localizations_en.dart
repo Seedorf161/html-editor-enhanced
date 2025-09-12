@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -20,4 +22,13 @@ class SEn extends S {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get chooseImageOrUrl => 'Please either choose an image or enter an image URL!';
+
+  @override
+  String get enterImageUrl => 'Please enter an image URL!';
+
+  @override
+  String get eitherImageOrUrl => 'Please input either an image or an image URL, not both!';
 }

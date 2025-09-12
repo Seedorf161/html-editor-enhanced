@@ -3,5 +3,8 @@
     "selectFromFiles": "Select from files",
     "chooseImage": "Choose image",
     "url": "URL",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "chooseImageOrUrl": "Please either choose an image or enter an image URL!",
+    "enterImageUrl": "Please enter an image URL!",
+    "eitherImageOrUrl": "Please input either an image or an image URL, not both!"
 }

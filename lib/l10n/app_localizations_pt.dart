@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -20,4 +22,13 @@ class SPt extends S {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get chooseImageOrUrl => 'Por favor, escolha uma imagem ou insira o URL da imagem!';
+
+  @override
+  String get enterImageUrl => 'Por favor, insira a URL da imagem!';
+
+  @override
+  String get eitherImageOrUrl => 'Insira uma imagem ou o URL da imagem, não ambos!';
 }

@@ -143,17 +143,14 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           }
                         });
                   },
-                  initialOptions: InAppWebViewGroupOptions(
-                      crossPlatform: InAppWebViewOptions(
-                        javaScriptEnabled: true,
-                        transparentBackground: true,
-                        useShouldOverrideUrlLoading: true,
-                      ),
-                      android: AndroidInAppWebViewOptions(
-                        useHybridComposition: widget
-                            .htmlEditorOptions.androidUseHybridComposition,
-                        loadWithOverviewMode: true,
-                      )),
+                  initialSettings: InAppWebViewSettings(
+                    javaScriptEnabled: true,
+                    transparentBackground: true,
+                    useShouldOverrideUrlLoading: true,
+                    useHybridComposition:
+                        widget.htmlEditorOptions.androidUseHybridComposition,
+                    loadWithOverviewMode: true,
+                  ),
                   initialUserScripts:
                       widget.htmlEditorOptions.mobileInitialScripts
                           as UnmodifiableListView<UserScript>?,
@@ -169,8 +166,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                   },
                   shouldOverrideUrlLoading: (controller, action) async {
                     if (!action.request.url.toString().contains(filePath)) {
-                      return (await widget
-                                  .callbacks?.onNavigationRequestMobile
+                      return (await widget.callbacks?.onNavigationRequestMobile
                                   ?.call(action.request.url.toString()))
                               as NavigationActionPolicy? ??
                           NavigationActionPolicy.ALLOW;
@@ -217,7 +213,9 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                         });
                         await setHeightJS();
                       }
-                      var visibleDecimal = await visibleStream.stream.first;
+                      var visibleDecimal = await visibleStream.stream
+                          .firstWhere((_) => !visibleStream.isClosed,
+                              orElse: () => 0);
                       var newHeight = widget.otherOptions.height;
                       if (visibleDecimal > 0.1) {
                         this.setState(() {
@@ -260,8 +258,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           },
                       ''';
                       if (widget.plugins.isNotEmpty) {
-                        summernoteToolbar =
-                            summernoteToolbar + "['plugins', [";
+                        summernoteToolbar = summernoteToolbar + "['plugins', [";
                         for (var p in widget.plugins) {
                           summernoteToolbar = summernoteToolbar +
                               (p.getToolbarString().isNotEmpty
@@ -452,7 +449,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                               "document.onselectionchange = onSelectionChange; console.log('done');");
                       await controller.evaluateJavascript(
                           source:
-                              "document.getElementsByClassName('note-editable')[0].setAttribute('inputmode', '${describeEnum(widget.htmlEditorOptions.inputType)}');");
+                              "document.getElementsByClassName('note-editable')[0].setAttribute('inputmode', '${widget.htmlEditorOptions.inputType.name}');");
                       if ((Theme.of(context).brightness == Brightness.dark ||
                               widget.htmlEditorOptions.darkMode == true) &&
                           widget.htmlEditorOptions.darkMode != false) {
@@ -501,13 +498,12 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           }
                         });
                       }
-                      widget.controller.editorController!
-                          .addJavaScriptHandler(
-                              handlerName: 'totalChars',
-                              callback: (keyCode) {
-                                widget.controller.characterCount =
-                                    keyCode.first as int;
-                              });
+                      widget.controller.editorController!.addJavaScriptHandler(
+                          handlerName: 'totalChars',
+                          callback: (keyCode) {
+                            widget.controller.characterCount =
+                                keyCode.first as int;
+                          });
                       //disable editor if necessary
                       if (widget.htmlEditorOptions.disabled &&
                           !callbacksInitialized) {
@@ -528,8 +524,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                       controller.addJavaScriptHandler(
                           handlerName: 'onChangeContent',
                           callback: (contents) {
-                            if (widget
-                                    .htmlEditorOptions.shouldEnsureVisible) {
+                            if (widget.htmlEditorOptions.shouldEnsureVisible) {
                               Scrollable.of(context).position.ensureVisible(
                                     context.findRenderObject()!,
                                   );

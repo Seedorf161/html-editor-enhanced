@@ -1,6 +1,8 @@
 # Flutter Html Editor - Enhanced
 [![pub package](https://img.shields.io/pub/v/html_editor_enhanced.svg)](https://pub.dev/packages/html_editor_enhanced)
 
+To run language generation - flutter gen-l10n
+
 Flutter HTML Editor Enhanced is a text editor for Android, iOS, and Web to help write WYSIWYG HTML code with the Summernote JavaScript wrapper.
 
 Note that the API shown in this README.md file shows only a part of the documentation and, also, conforms to the GitHub master branch only! So, here you could have methods, options, and events that aren't published/released yet! If you need a specific version, please change the GitHub branch of this repository to your version or use the online [API Reference](https://pub.dev/documentation/html_editor_enhanced/latest/) (recommended).
@@ -31,61 +33,52 @@ Note that the API shown in this README.md file shows only a part of the document
 
 ## Table of Contents:
 
-- ["Enhanced"? In what ways?](#in-what-ways-is-this-package-enhanced)
-
-- [Setup](#setup)
-
-- [Usage](#basic-usage)
-
-- [API Reference](#api-reference)
-
-  - [Parameters Table](#parameters---htmleditor)
-
-  - [Methods Table](#methods)
-
-  - [Callbacks Table](#callbacks)
-  
-  - [Getters](#getters)
-  
-  - [Toolbar](#toolbar)
-  
-  - [Plugins](#plugins)
-  
-  - [`HtmlEditorOptions` Parameters](#htmleditoroptions-parameters)
-    
-    - [`autoAdjustHeight`](#autoadjustheight)
-  
-    - [`adjustHeightForKeyboard`](#adjustheightforkeyboard)
-  
-    - [`filePath`](#filepath)
-  
-    - [`shouldEnsureVisible`](#shouldensurevisible)
-    
-    - [`webInitialScripts`](#webinitialscripts)
-    
-  - [`HtmlToolbarOptions` Parameters](#htmltoolbaroptions-parameters)
-  
-    - [`customToolbarButtons` and `customToolbarButtonsInsertionIndices`](#customtoolbarbuttons-and-customtoolbarbuttonsinsertionindices)
-    
-    - [`linkInsertInterceptor`, `mediaLinkInsertInterceptor`, `otherFileLinkInsert`, `mediaUploadInterceptor`, and `onOtherFileUpload`](#linkinsertinterceptor-medialinkinsertinterceptor-otherfilelinkinsert-mediauploadinterceptor-and-onotherfileupload)
-    
-    - [`onButtonPressed` and `onDropdownChanged`](#onbuttonpressed-and-ondropdownchanged)
-    
-    - [`toolbarPosition: ToolbarPosition.custom`](#custom-toolbar-position-using-toolbarpositioncustom)
-    
-  - [`HtmlEditorController` Parameters](#htmleditorcontroller-parameters)
-  
-    - [`processInputHtml`, `processOutputHtml`, and `processNewLineAsBr`](#processinputhtml-processoutputhtml-and-processnewlineasbr)
-
-- [Examples](#examples)
-
-- [Notes](#notes)
-
-- [FAQ](#faq)
-
-- [License](#license)
-
-- [Contribution Guide](#contribution-guide)
+- [Flutter Html Editor - Enhanced](#flutter-html-editor---enhanced)
+  - [Table of Contents:](#table-of-contents)
+  - [In what ways is this package "enhanced"?](#in-what-ways-is-this-package-enhanced)
+  - [Setup](#setup)
+      - [v2.0.0 Migration Guide:](#v200-migration-guide)
+  - [Basic Usage](#basic-usage)
+    - [Important note for Web:](#important-note-for-web)
+  - [API Reference](#api-reference)
+    - [Parameters - `HtmlEditor`](#parameters---htmleditor)
+    - [Parameters - `HtmlEditorController`](#parameters---htmleditorcontroller)
+    - [Parameters - `HtmlEditorOptions`](#parameters---htmleditoroptions)
+    - [Parameters - `HtmlToolbarOptions`](#parameters---htmltoolbaroptions)
+      - [Toolbar Options](#toolbar-options)
+      - [Styling Options](#styling-options)
+      - [Styling Options - applies to dropdowns only](#styling-options---applies-to-dropdowns-only)
+      - [Styling Options - applies to buttons only](#styling-options---applies-to-buttons-only)
+    - [Parameters - `Other Options`](#parameters---other-options)
+    - [Methods](#methods)
+    - [Callbacks](#callbacks)
+    - [Getters](#getters)
+    - [Toolbar](#toolbar)
+    - [Plugins](#plugins)
+    - [`HtmlEditorOptions` parameters](#htmleditoroptions-parameters)
+      - [`autoAdjustHeight`](#autoadjustheight)
+      - [`adjustHeightForKeyboard`](#adjustheightforkeyboard)
+      - [`filePath`](#filepath)
+      - [`shouldEnsureVisible`](#shouldensurevisible)
+      - [`webInitialScripts`](#webinitialscripts)
+    - [`HtmlToolbarOptions` parameters](#htmltoolbaroptions-parameters)
+      - [`customToolbarButtons` and `customToolbarButtonsInsertionIndices`](#customtoolbarbuttons-and-customtoolbarbuttonsinsertionindices)
+      - [`linkInsertInterceptor`, `mediaLinkInsertInterceptor`, `otherFileLinkInsert`, `mediaUploadInterceptor`, and `onOtherFileUpload`](#linkinsertinterceptor-medialinkinsertinterceptor-otherfilelinkinsert-mediauploadinterceptor-and-onotherfileupload)
+      - [`onButtonPressed` and `onDropdownChanged`](#onbuttonpressed-and-ondropdownchanged)
+      - [Custom toolbar position using `ToolbarPosition.custom`](#custom-toolbar-position-using-toolbarpositioncustom)
+    - [`HtmlEditorController` Parameters](#htmleditorcontroller-parameters)
+      - [`processInputHtml`, `processOutputHtml`, and `processNewLineAsBr`](#processinputhtml-processoutputhtml-and-processnewlineasbr)
+  - [Examples](#examples)
+    - [Example for `linkInsertInterceptor`, `mediaLinkInsertInterceptor`, `otherFileLinkInsert`, `mediaUploadInterceptor`, and `onOtherFileUpload`:](#example-for-linkinsertinterceptor-medialinkinsertinterceptor-otherfilelinkinsert-mediauploadinterceptor-and-onotherfileupload)
+    - [Example for `onButtonPressed` and `onDropdownChanged`](#example-for-onbuttonpressed-and-ondropdownchanged)
+    - [Example for `adjustHeightForKeyboard`:](#example-for-adjustheightforkeyboard)
+    - [Example for `shouldEnsureVisible`:](#example-for-shouldensurevisible)
+    - [Example HTML for `filePath`:](#example-html-for-filepath)
+    - [Example for `webInitialScripts`:](#example-for-webinitialscripts)
+  - [Notes](#notes)
+  - [FAQ](#faq)
+  - [License](#license)
+  - [Contribution Guide](#contribution-guide)
  
 ## In what ways is this package "enhanced"?
 

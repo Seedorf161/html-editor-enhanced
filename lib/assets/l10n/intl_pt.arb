@@ -3,5 +3,8 @@
     "selectFromFiles": "Selecione da galeria",
     "chooseImage": "Escolher Imagem",
     "url": "URL",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "chooseImageOrUrl": "Por favor, escolha uma imagem ou insira o URL da imagem!",
+    "enterImageUrl": "Por favor, insira a URL da imagem!",
+    "eitherImageOrUrl": "Insira uma imagem ou o URL da imagem, não ambos!"
 }
