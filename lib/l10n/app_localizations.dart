@@ -142,6 +142,36 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Please input either an image or an image URL, not both!'**
   String get eitherImageOrUrl;
+
+  /// No description provided for @insertLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Insert Link'**
+  String get insertLink;
+
+  /// No description provided for @textToDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Text to display'**
+  String get textToDisplay;
+
+  /// No description provided for @text.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get text;
+
+  /// No description provided for @enterUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a URL!'**
+  String get enterUrl;
+
+  /// No description provided for @openNewWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in new window'**
+  String get openNewWindow;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

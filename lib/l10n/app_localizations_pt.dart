@@ -31,4 +31,19 @@ class SPt extends S {
 
   @override
   String get eitherImageOrUrl => 'Insira uma imagem ou o URL da imagem, não ambos!';
+
+  @override
+  String get insertLink => 'Inserir link';
+
+  @override
+  String get textToDisplay => 'Texto a ser exibido';
+
+  @override
+  String get text => 'Texto';
+
+  @override
+  String get enterUrl => 'Por favor, insira uma URL!';
+
+  @override
+  String get openNewWindow => 'Abrir em nova janela';
 }

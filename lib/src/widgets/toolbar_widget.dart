@@ -1800,7 +1800,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                         child: StatefulBuilder(builder:
                             (BuildContext context, StateSetter setState) {
                           return AlertDialog(
-                            title: Text('Insert Link'),
+                            title: Text(context.language.insertLink),
                             scrollable: true,
                             content: Form(
                               key: formKey,
@@ -1808,7 +1808,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Text to display',
+                                    Text(context.language.textToDisplay,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold)),
                                     SizedBox(height: 10),
@@ -1822,14 +1822,14 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                           ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
-                                        hintText: 'Text',
+                                        hintText: context.language.text,
                                       ),
                                       onSubmitted: (_) {
                                         urlFocus.requestFocus();
                                       },
                                     ),
                                     SizedBox(height: 20),
-                                    Text('URL',
+                                    Text(context.language.url,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold)),
                                     SizedBox(height: 10),
@@ -1843,11 +1843,11 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                           ?.copyWith(fontSize: 14),
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
-                                        hintText: 'URL',
+                                        hintText: context.language.url,
                                       ),
                                       validator: (String? value) {
                                         if (value == null || value.isEmpty) {
-                                          return 'Please enter a URL!';
+                                          return context.language.enterUrl;
                                         }
                                         return null;
                                       },
@@ -1859,7 +1859,10 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                           width: 24.0,
                                           child: Checkbox(
                                             value: openNewTab,
-                                            activeColor: Color(0xFF827250),
+                                            activeColor: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall
+                                                      ?.color,
                                             onChanged: (bool? value) {
                                               setState(() {
                                                 openNewTab = value!;
@@ -1880,7 +1883,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                               openNewTab = !openNewTab;
                                             });
                                           },
-                                          child: Text('Open in new window',
+                                          child: Text(context.language.openNewWindow,
                                               style: TextStyle(
                                                   color: Theme.of(context)
                                                       .textTheme

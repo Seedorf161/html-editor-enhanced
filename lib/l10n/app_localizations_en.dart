@@ -31,4 +31,19 @@ class SEn extends S {
 
   @override
   String get eitherImageOrUrl => 'Please input either an image or an image URL, not both!';
+
+  @override
+  String get insertLink => 'Insert Link';
+
+  @override
+  String get textToDisplay => 'Text to display';
+
+  @override
+  String get text => 'Text';
+
+  @override
+  String get enterUrl => 'Please enter a URL!';
+
+  @override
+  String get openNewWindow => 'Open in new window';
 }

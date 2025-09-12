@@ -6,5 +6,10 @@
     "cancel": "Cancel",
     "chooseImageOrUrl": "Please either choose an image or enter an image URL!",
     "enterImageUrl": "Please enter an image URL!",
-    "eitherImageOrUrl": "Please input either an image or an image URL, not both!"
+    "eitherImageOrUrl": "Please input either an image or an image URL, not both!",
+    "insertLink":"Insert Link",
+    "textToDisplay": "Text to display",
+    "text": "Text",
+    "enterUrl": "Please enter a URL!",
+    "openNewWindow": "Open in new window"
 }

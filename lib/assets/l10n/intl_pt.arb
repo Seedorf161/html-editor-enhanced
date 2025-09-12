@@ -6,5 +6,10 @@
     "cancel": "Cancelar",
     "chooseImageOrUrl": "Por favor, escolha uma imagem ou insira o URL da imagem!",
     "enterImageUrl": "Por favor, insira a URL da imagem!",
-    "eitherImageOrUrl": "Insira uma imagem ou o URL da imagem, não ambos!"
+    "eitherImageOrUrl": "Insira uma imagem ou o URL da imagem, não ambos!",
+    "insertLink":"Inserir link",
+    "textToDisplay": "Texto a ser exibido",
+    "text": "Texto",
+    "enterUrl": "Por favor, insira uma URL!",
+    "openNewWindow": "Abrir em nova janela"
 }
