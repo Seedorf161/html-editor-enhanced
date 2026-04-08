@@ -24,13 +24,15 @@ class SPt extends S {
   String get cancel => 'Cancelar';
 
   @override
-  String get chooseImageOrUrl => 'Por favor, escolha uma imagem ou insira o URL da imagem!';
+  String get chooseImageOrUrl =>
+      'Por favor, escolha uma imagem ou insira o URL da imagem!';
 
   @override
   String get enterImageUrl => 'Por favor, insira a URL da imagem!';
 
   @override
-  String get eitherImageOrUrl => 'Insira uma imagem ou o URL da imagem, não ambos!';
+  String get eitherImageOrUrl =>
+      'Insira uma imagem ou o URL da imagem, não ambos!';
 
   @override
   String get insertLink => 'Inserir link';

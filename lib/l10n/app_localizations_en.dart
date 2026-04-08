@@ -24,13 +24,15 @@ class SEn extends S {
   String get cancel => 'Cancel';
 
   @override
-  String get chooseImageOrUrl => 'Please either choose an image or enter an image URL!';
+  String get chooseImageOrUrl =>
+      'Please either choose an image or enter an image URL!';
 
   @override
   String get enterImageUrl => 'Please enter an image URL!';
 
   @override
-  String get eitherImageOrUrl => 'Please input either an image or an image URL, not both!';
+  String get eitherImageOrUrl =>
+      'Please input either an image or an image URL, not both!';
 
   @override
   String get insertLink => 'Insert Link';
