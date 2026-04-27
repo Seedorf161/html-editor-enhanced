@@ -25,6 +25,7 @@ class HtmlEditorOptions {
     this.webInitialScripts,
     this.shouldEnsureVisible = false,
     this.spellCheck = false,
+    this.cursorColor,
   });
 
   /// The editor will automatically adjust its height when the keyboard is active
@@ -98,6 +99,9 @@ class HtmlEditorOptions {
 
   /// Customize the context menu for selected text on mobile
   final ContextMenu? mobileContextMenu;
+
+  /// Sets the color of the cursor (caret) in the editor.
+  final Color? cursorColor;
 
   /// Set the duration until a long-press is recognized.
   ///

@@ -218,6 +218,7 @@ class _HtmlEditorWidgetWebState extends State<HtmlEditorWidget> {
           });
           
           \$('.note-statusbar').hide();
+          ${widget.htmlEditorOptions.cursorColor != null ? "\$('.note-editable').css('caret-color', '#${(widget.htmlEditorOptions.cursorColor!.toARGB32() & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}');" : ""}
           
           \$('#summernote-2').on('summernote.change', function(_, contents, \$editable) {
             window.parent.postMessage(JSON.stringify({"view": "$createdViewId", "type": "toDart: onChangeContent", "contents": contents}), "*");
