@@ -1,3 +1,4 @@
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter/material.dart';
 
 /// Abstract class that all the toolbar classes extend
@@ -49,18 +50,18 @@ class FontButtons extends Toolbar {
 
   List<Icon> getIcons1() {
     var icons = <Icon>[];
-    if (bold) icons.add(Icon(Icons.format_bold));
-    if (italic) icons.add(Icon(Icons.format_italic));
-    if (underline) icons.add(Icon(Icons.format_underline));
-    if (clearAll) icons.add(Icon(Icons.format_clear));
+    if (bold) icons.add(Icon(LucideIcons.bold));
+    if (italic) icons.add(Icon(LucideIcons.italic));
+    if (underline) icons.add(Icon(LucideIcons.underline));
+    if (clearAll) icons.add(Icon(LucideIcons.eraser));
     return icons;
   }
 
   List<Icon> getIcons2() {
     var icons = <Icon>[];
-    if (strikethrough) icons.add(Icon(Icons.format_strikethrough));
-    if (superscript) icons.add(Icon(Icons.superscript));
-    if (subscript) icons.add(Icon(Icons.subscript));
+    if (strikethrough) icons.add(Icon(LucideIcons.strikethrough));
+    if (superscript) icons.add(Icon(LucideIcons.superscript));
+    if (subscript) icons.add(Icon(LucideIcons.subscript));
     return icons;
   }
 }
@@ -77,8 +78,8 @@ class ColorButtons extends Toolbar {
 
   List<Icon> getIcons() {
     var icons = <Icon>[];
-    if (foregroundColor) icons.add(Icon(Icons.format_color_text));
-    if (highlightColor) icons.add(Icon(Icons.format_color_fill));
+    if (foregroundColor) icons.add(Icon(LucideIcons.baseline));
+    if (highlightColor) icons.add(Icon(LucideIcons.paintBucket));
     return icons;
   }
 }
@@ -97,8 +98,8 @@ class ListButtons extends Toolbar {
 
   List<Icon> getIcons() {
     var icons = <Icon>[];
-    if (ul) icons.add(Icon(Icons.format_list_bulleted));
-    if (ol) icons.add(Icon(Icons.format_list_numbered));
+    if (ul) icons.add(Icon(LucideIcons.list));
+    if (ol) icons.add(Icon(LucideIcons.listOrdered));
     return icons;
   }
 }
@@ -129,17 +130,17 @@ class ParagraphButtons extends Toolbar {
 
   List<Icon> getIcons1() {
     var icons = <Icon>[];
-    if (alignLeft) icons.add(Icon(Icons.format_align_left));
-    if (alignCenter) icons.add(Icon(Icons.format_align_center));
-    if (alignRight) icons.add(Icon(Icons.format_align_right));
-    if (alignJustify) icons.add(Icon(Icons.format_align_justify));
+    if (alignLeft) icons.add(Icon(LucideIcons.alignLeft));
+    if (alignCenter) icons.add(Icon(LucideIcons.alignCenter));
+    if (alignRight) icons.add(Icon(LucideIcons.alignRight));
+    if (alignJustify) icons.add(Icon(LucideIcons.alignJustify));
     return icons;
   }
 
   List<Icon> getIcons2() {
     var icons = <Icon>[];
-    if (increaseIndent) icons.add(Icon(Icons.format_indent_increase));
-    if (decreaseIndent) icons.add(Icon(Icons.format_indent_decrease));
+    if (increaseIndent) icons.add(Icon(LucideIcons.indent));
+    if (decreaseIndent) icons.add(Icon(LucideIcons.outdent));
     return icons;
   }
 }
@@ -166,13 +167,13 @@ class InsertButtons extends Toolbar {
 
   List<Icon> getIcons() {
     var icons = <Icon>[];
-    if (link) icons.add(Icon(Icons.link));
-    if (picture) icons.add(Icon(Icons.image_outlined));
-    if (audio) icons.add(Icon(Icons.audiotrack_outlined));
-    if (video) icons.add(Icon(Icons.videocam_outlined));
-    if (otherFile) icons.add(Icon(Icons.attach_file));
-    if (table) icons.add(Icon(Icons.table_chart_outlined));
-    if (hr) icons.add(Icon(Icons.horizontal_rule));
+    if (link) icons.add(Icon(LucideIcons.link));
+    if (picture) icons.add(Icon(LucideIcons.image));
+    if (audio) icons.add(Icon(LucideIcons.music));
+    if (video) icons.add(Icon(LucideIcons.video));
+    if (otherFile) icons.add(Icon(LucideIcons.paperclip));
+    if (table) icons.add(Icon(LucideIcons.table));
+    if (hr) icons.add(Icon(LucideIcons.minus));
     return icons;
   }
 }
@@ -199,18 +200,18 @@ class OtherButtons extends Toolbar {
 
   List<Icon> getIcons1() {
     var icons = <Icon>[];
-    if (fullscreen) icons.add(Icon(Icons.fullscreen));
-    if (codeview) icons.add(Icon(Icons.code));
-    if (undo) icons.add(Icon(Icons.undo));
-    if (redo) icons.add(Icon(Icons.redo));
-    if (help) icons.add(Icon(Icons.help_outline));
+    if (fullscreen) icons.add(Icon(LucideIcons.maximize));
+    if (codeview) icons.add(Icon(LucideIcons.code));
+    if (undo) icons.add(Icon(LucideIcons.undo));
+    if (redo) icons.add(Icon(LucideIcons.redo));
+    if (help) icons.add(Icon(LucideIcons.helpCircle));
     return icons;
   }
 
   List<Icon> getIcons2() {
     var icons = <Icon>[];
-    if (copy) icons.add(Icon(Icons.copy));
-    if (paste) icons.add(Icon(Icons.paste));
+    if (copy) icons.add(Icon(LucideIcons.copy));
+    if (paste) icons.add(Icon(LucideIcons.clipboardPaste));
     return icons;
   }
 }

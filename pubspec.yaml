@@ -33,6 +33,7 @@ dependencies:
   # plugin for @internal annotation
   meta: '>=1.0.0 <2.0.0'
   intl: any
+  lucide_icons: ^0.257.0
 
 # dependency_overrides:
 #   flutter_inappwebview_ios:

@@ -192,6 +192,9 @@ class HtmlToolbarOptions {
     this.allowImagePicking = true,
     this.locale = const Locale('en'),
     this.themeData,
+    this.color,
+    this.toolbarBoxDecoration,
+    this.iconSize = 24,
   });
 
   /// Allows you to set the allowed extensions when a user inserts an audio file
@@ -414,6 +417,20 @@ class HtmlToolbarOptions {
   final Locale locale;
 
   final ThemeData? themeData;
+
+  /// Sets the background color of the toolbar.
+  final Color? color;
+
+  /// Sets the size of the toolbar icons.
+  /// 
+  /// The default value is 24.
+  final double iconSize;
+
+  /// Sets the decoration of the toolbar. 
+  ///
+  /// This can be used to set a background color and a border separating the 
+  /// toolbar from the field.
+  final BoxDecoration? toolbarBoxDecoration;
 }
 
 /// Other options such as the height of the widget and the decoration surrounding it

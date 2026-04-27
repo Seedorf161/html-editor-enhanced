@@ -212,11 +212,14 @@ class _HtmlEditorWidgetWebState extends State<HtmlEditorWidget> {
             tabsize: 2,
             height: ${widget.otherOptions.height},
             disableGrammar: false,
+            disableResizeEditor: true,
             spellCheck: ${widget.htmlEditorOptions.spellCheck},
             maximumFileSize: $maximumFileSize,
             ${widget.htmlEditorOptions.customOptions}
             $summernoteCallbacks
           });
+          
+          \$('.note-statusbar').hide();
           
           \$('#summernote-2').on('summernote.change', function(_, contents, \$editable) {
             window.parent.postMessage(JSON.stringify({"view": "$createdViewId", "type": "toDart: onChangeContent", "contents": contents}), "*");

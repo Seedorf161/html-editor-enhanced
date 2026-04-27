@@ -1,3 +1,4 @@
+import 'package:lucide_icons/lucide_icons.dart';
 import 'dart:convert';
 
 import 'package:file_picker/file_picker.dart';
@@ -254,50 +255,50 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
       for (var t in widget.htmlToolbarOptions.defaultToolbarButtons) {
         if (t is FontButtons) {
           for (var i = 0; i < _fontSelected.length; i++) {
-            if (t.getIcons1()[i].icon == Icons.format_bold) {
+            if (t.getIcons1()[i].icon == LucideIcons.bold) {
               _fontSelected[i] = fontList[0] ?? false;
             }
-            if (t.getIcons1()[i].icon == Icons.format_italic) {
+            if (t.getIcons1()[i].icon == LucideIcons.italic) {
               _fontSelected[i] = fontList[1] ?? false;
             }
-            if (t.getIcons1()[i].icon == Icons.format_underline) {
+            if (t.getIcons1()[i].icon == LucideIcons.underline) {
               _fontSelected[i] = fontList[2] ?? false;
             }
           }
           for (var i = 0; i < _miscFontSelected.length; i++) {
-            if (t.getIcons2()[i].icon == Icons.format_strikethrough) {
+            if (t.getIcons2()[i].icon == LucideIcons.strikethrough) {
               _miscFontSelected[i] = miscFontList[0] ?? false;
             }
-            if (t.getIcons2()[i].icon == Icons.superscript) {
+            if (t.getIcons2()[i].icon == LucideIcons.superscript) {
               _miscFontSelected[i] = miscFontList[1] ?? false;
             }
-            if (t.getIcons2()[i].icon == Icons.subscript) {
+            if (t.getIcons2()[i].icon == LucideIcons.subscript) {
               _miscFontSelected[i] = miscFontList[2] ?? false;
             }
           }
         }
         if (t is ListButtons) {
           for (var i = 0; i < _listSelected.length; i++) {
-            if (t.getIcons()[i].icon == Icons.format_list_bulleted) {
+            if (t.getIcons()[i].icon == LucideIcons.list) {
               _listSelected[i] = paragraphList[0] ?? false;
             }
-            if (t.getIcons()[i].icon == Icons.format_list_numbered) {
+            if (t.getIcons()[i].icon == LucideIcons.listOrdered) {
               _listSelected[i] = paragraphList[1] ?? false;
             }
           }
         }
         if (t is ParagraphButtons) {
           for (var i = 0; i < _alignSelected.length; i++) {
-            if (t.getIcons1()[i].icon == Icons.format_align_left) {
+            if (t.getIcons1()[i].icon == LucideIcons.alignLeft) {
               _alignSelected[i] = alignList[0] ?? false;
             }
-            if (t.getIcons1()[i].icon == Icons.format_align_center) {
+            if (t.getIcons1()[i].icon == LucideIcons.alignCenter) {
               _alignSelected[i] = alignList[1] ?? false;
             }
-            if (t.getIcons1()[i].icon == Icons.format_align_right) {
+            if (t.getIcons1()[i].icon == LucideIcons.alignRight) {
               _alignSelected[i] = alignList[2] ?? false;
             }
-            if (t.getIcons1()[i].icon == Icons.format_align_justify) {
+            if (t.getIcons1()[i].icon == LucideIcons.alignJustify) {
               _alignSelected[i] = alignList[3] ?? false;
             }
           }
@@ -337,12 +338,19 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           absorbing: !_enabled,
           child: Opacity(
             opacity: _enabled ? 1 : 0.5,
-            child: Padding(
+            child: Container(
+              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null 
+                  ? widget.htmlToolbarOptions.color 
+                  : null,
+              decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
               padding: const EdgeInsets.all(5.0),
-              child: Wrap(
-                runSpacing: widget.htmlToolbarOptions.gridViewVerticalSpacing,
-                spacing: widget.htmlToolbarOptions.gridViewHorizontalSpacing,
-                children: _buildChildren(),
+              child: IconTheme(
+                data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
+                child: Wrap(
+                  runSpacing: widget.htmlToolbarOptions.gridViewVerticalSpacing,
+                  spacing: widget.htmlToolbarOptions.gridViewHorizontalSpacing,
+                  children: _buildChildren(),
+                ),
               ),
             ),
           ),
@@ -356,20 +364,27 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           child: Opacity(
             opacity: _enabled ? 1 : 0.5,
             child: Container(
+              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null 
+                  ? widget.htmlToolbarOptions.color 
+                  : null,
+              decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
               height: widget.htmlToolbarOptions.toolbarItemHeight + 15,
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
-                child: CustomScrollView(
-                  scrollDirection: Axis.horizontal,
-                  slivers: [
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: _buildChildren(),
+                child: IconTheme(
+                  data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
+                  child: CustomScrollView(
+                    scrollDirection: Axis.horizontal,
+                    slivers: [
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: _buildChildren(),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -384,6 +399,10 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           child: Opacity(
             opacity: _enabled ? 1 : 0.5,
             child: Container(
+              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null 
+                  ? widget.htmlToolbarOptions.color 
+                  : null,
+              decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
               constraints: BoxConstraints(
                 maxHeight: _isExpanded
                     ? MediaQuery.of(context).size.height
@@ -392,76 +411,83 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               child: _isExpanded
                   ? Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: Wrap(
-                        runSpacing:
-                            widget.htmlToolbarOptions.gridViewVerticalSpacing,
-                        spacing:
-                            widget.htmlToolbarOptions.gridViewHorizontalSpacing,
-                        children: _buildChildren()
-                          ..insert(
-                              0,
-                              Container(
-                                height:
-                                    widget.htmlToolbarOptions.toolbarItemHeight,
-                                child: IconButton(
-                                  icon: Icon(
-                                    _isExpanded
-                                        ? Icons.expand_less
-                                        : Icons.expand_more,
-                                    color: Colors.grey,
+                      child: IconTheme(
+                        data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
+                        child: Wrap(
+                          runSpacing:
+                              widget.htmlToolbarOptions.gridViewVerticalSpacing,
+                          spacing:
+                              widget.htmlToolbarOptions.gridViewHorizontalSpacing,
+                          children: _buildChildren()
+                            ..insert(
+                                0,
+                                Container(
+                                  height:
+                                      widget.htmlToolbarOptions.toolbarItemHeight,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      _isExpanded
+                                          ? LucideIcons.chevronUp
+                                          : LucideIcons.chevronDown,
+                                      color: Colors.grey,
+                                      size: widget.htmlToolbarOptions.iconSize,
+                                    ),
+                                    onPressed: () async {
+                                      setState(mounted, this.setState, () {
+                                        _isExpanded = !_isExpanded;
+                                      });
+                                      await Future.delayed(
+                                          Duration(milliseconds: 100));
+                                      if (kIsWeb) {
+                                        widget.controller.recalculateHeight();
+                                      } else {
+                                        await widget.controller.editorController!
+                                            .evaluateJavascript(
+                                                source:
+                                                    "var height = \$('div.note-editable').outerHeight(true); window.flutter_inappwebview.callHandler('setHeight', height);");
+                                      }
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    setState(mounted, this.setState, () {
-                                      _isExpanded = !_isExpanded;
-                                    });
-                                    await Future.delayed(
-                                        Duration(milliseconds: 100));
-                                    if (kIsWeb) {
-                                      widget.controller.recalculateHeight();
-                                    } else {
-                                      await widget.controller.editorController!
-                                          .evaluateJavascript(
-                                              source:
-                                                  "var height = \$('div.note-editable').outerHeight(true); window.flutter_inappwebview.callHandler('setHeight', height);");
-                                    }
-                                  },
-                                ),
-                              )),
+                                )),
+                        ),
                       ),
                     )
                   : Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: CustomScrollView(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        slivers: [
-                          SliverPersistentHeader(
-                            pinned: true,
-                            delegate: ExpandIconDelegate(
-                                widget.htmlToolbarOptions.toolbarItemHeight,
-                                _isExpanded, () async {
-                              setState(mounted, this.setState, () {
-                                _isExpanded = !_isExpanded;
-                              });
-                              await Future.delayed(Duration(milliseconds: 100));
-                              if (kIsWeb) {
-                                widget.controller.recalculateHeight();
-                              } else {
-                                await widget.controller.editorController!
-                                    .evaluateJavascript(
-                                        source:
-                                            "var height = \$('div.note-editable').outerHeight(true); window.flutter_inappwebview.callHandler('setHeight', height);");
-                              }
-                            }),
-                          ),
-                          SliverFillRemaining(
-                            hasScrollBody: false,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: _buildChildren(),
+                      child: IconTheme(
+                        data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
+                        child: CustomScrollView(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          slivers: [
+                            SliverPersistentHeader(
+                              pinned: true,
+                              delegate: ExpandIconDelegate(
+                                  widget.htmlToolbarOptions.toolbarItemHeight,
+                                  _isExpanded, () async {
+                                setState(mounted, this.setState, () {
+                                  _isExpanded = !_isExpanded;
+                                });
+                                await Future.delayed(Duration(milliseconds: 100));
+                                if (kIsWeb) {
+                                  widget.controller.recalculateHeight();
+                                } else {
+                                  await widget.controller.editorController!
+                                      .evaluateJavascript(
+                                          source:
+                                              "var height = \$('div.note-editable').outerHeight(true); window.flutter_inappwebview.callHandler('setHeight', height);");
+                                }
+                              }),
                             ),
-                          ),
-                        ],
+                            SliverFillRemaining(
+                              hasScrollBody: false,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: _buildChildren(),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
             ),
@@ -918,7 +944,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 });
               }
 
-              if (t.getIcons1()[index].icon == Icons.format_bold) {
+              if (t.getIcons1()[index].icon == LucideIcons.bold) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.bold, _fontSelected[index],
                             updateStatus) ??
@@ -928,7 +954,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.format_italic) {
+              if (t.getIcons1()[index].icon == LucideIcons.italic) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.italic, _fontSelected[index],
                             updateStatus) ??
@@ -938,7 +964,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.format_underline) {
+              if (t.getIcons1()[index].icon == LucideIcons.underline) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.underline, _fontSelected[index],
                             updateStatus) ??
@@ -948,7 +974,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.format_clear) {
+              if (t.getIcons1()[index].icon == LucideIcons.eraser) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.clearFormatting, null, null) ??
                     true;
@@ -988,7 +1014,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 });
               }
 
-              if (t.getIcons2()[index].icon == Icons.format_strikethrough) {
+              if (t.getIcons2()[index].icon == LucideIcons.strikethrough) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.strikethrough,
                             _miscFontSelected[index], updateStatus) ??
@@ -998,7 +1024,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons2()[index].icon == Icons.superscript) {
+              if (t.getIcons2()[index].icon == LucideIcons.superscript) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.superscript, _miscFontSelected[index],
                             updateStatus) ??
@@ -1008,7 +1034,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons2()[index].icon == Icons.subscript) {
+              if (t.getIcons2()[index].icon == LucideIcons.subscript) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.subscript, _miscFontSelected[index],
                             updateStatus) ??
@@ -1049,18 +1075,18 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               setState(mounted, this.setState, () {
                 _colorSelected[index] = !_colorSelected[index];
                 if (color != null &&
-                    t.getIcons()[index].icon == Icons.format_color_text) {
+                    t.getIcons()[index].icon == LucideIcons.baseline) {
                   _foreColorSelected = color;
                 }
                 if (color != null &&
-                    t.getIcons()[index].icon == Icons.format_color_fill) {
+                    t.getIcons()[index].icon == LucideIcons.paintBucket) {
                   _backColorSelected = color;
                 }
               });
             }
 
             if (_colorSelected[index]) {
-              if (t.getIcons()[index].icon == Icons.format_color_text) {
+              if (t.getIcons()[index].icon == LucideIcons.baseline) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.foregroundColor,
                             _colorSelected[index], updateStatus) ??
@@ -1074,7 +1100,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus(null);
                 }
               }
-              if (t.getIcons()[index].icon == Icons.format_color_fill) {
+              if (t.getIcons()[index].icon == LucideIcons.paintBucket) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.highlightColor, _colorSelected[index],
                             updateStatus) ??
@@ -1090,13 +1116,13 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             } else {
               var proceed = true;
-              if (t.getIcons()[index].icon == Icons.format_color_text) {
+              if (t.getIcons()[index].icon == LucideIcons.baseline) {
                 proceed = await widget.htmlToolbarOptions.onButtonPressed?.call(
                         ButtonType.foregroundColor,
                         _colorSelected[index],
                         updateStatus) ??
                     true;
-              } else if (t.getIcons()[index].icon == Icons.format_color_fill) {
+              } else if (t.getIcons()[index].icon == LucideIcons.paintBucket) {
                 proceed = await widget.htmlToolbarOptions.onButtonPressed?.call(
                         ButtonType.highlightColor,
                         _colorSelected[index],
@@ -1105,7 +1131,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
               if (proceed) {
                 late Color newColor;
-                if (t.getIcons()[index].icon == Icons.format_color_text) {
+                if (t.getIcons()[index].icon == LucideIcons.baseline) {
                   newColor = _foreColorSelected;
                 } else {
                   newColor = _backColorSelected;
@@ -1154,7 +1180,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                             TextButton(
                                 onPressed: () {
                                   if (t.getIcons()[index].icon ==
-                                      Icons.format_color_text) {
+                                      LucideIcons.baseline) {
                                     setState(mounted, this.setState, () {
                                       _foreColorSelected = Colors.black;
                                     });
@@ -1165,7 +1191,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                         argument: 'initial');
                                   }
                                   if (t.getIcons()[index].icon ==
-                                      Icons.format_color_fill) {
+                                      LucideIcons.paintBucket) {
                                     setState(mounted, this.setState, () {
                                       _backColorSelected = Colors.yellow;
                                     });
@@ -1181,7 +1207,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                             TextButton(
                               onPressed: () {
                                 if (t.getIcons()[index].icon ==
-                                    Icons.format_color_text) {
+                                    LucideIcons.baseline) {
                                   widget.controller.execCommand('foreColor',
                                       argument: (newColor.toARGB32() & 0xFFFFFF)
                                           .toRadixString(16)
@@ -1192,7 +1218,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                   });
                                 }
                                 if (t.getIcons()[index].icon ==
-                                    Icons.format_color_fill) {
+                                    LucideIcons.paintBucket) {
                                   widget.controller.execCommand('hiliteColor',
                                       argument: (newColor.toARGB32() & 0xFFFFFF)
                                           .toRadixString(16)
@@ -1249,7 +1275,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 });
               }
 
-              if (t.getIcons()[index].icon == Icons.format_list_bulleted) {
+              if (t.getIcons()[index].icon == LucideIcons.list) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.ul, _listSelected[index],
                             updateStatus) ??
@@ -1259,7 +1285,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons()[index].icon == Icons.format_list_numbered) {
+              if (t.getIcons()[index].icon == LucideIcons.listOrdered) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.ol, _listSelected[index],
                             updateStatus) ??
@@ -1409,7 +1435,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 });
               }
 
-              if (t.getIcons1()[index].icon == Icons.format_align_left) {
+              if (t.getIcons1()[index].icon == LucideIcons.alignLeft) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.alignLeft, _alignSelected[index],
                             updateStatus) ??
@@ -1419,7 +1445,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.format_align_center) {
+              if (t.getIcons1()[index].icon == LucideIcons.alignCenter) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.alignCenter, _alignSelected[index],
                             updateStatus) ??
@@ -1429,7 +1455,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.format_align_right) {
+              if (t.getIcons1()[index].icon == LucideIcons.alignRight) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.alignRight, _alignSelected[index],
                             updateStatus) ??
@@ -1439,7 +1465,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.format_align_justify) {
+              if (t.getIcons1()[index].icon == LucideIcons.alignJustify) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.alignJustify, _alignSelected[index],
                             updateStatus) ??
@@ -1475,7 +1501,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
             renderBorder: widget.htmlToolbarOptions.renderBorder,
             textStyle: widget.htmlToolbarOptions.textStyle,
             onPressed: (int index) async {
-              if (t.getIcons2()[index].icon == Icons.format_indent_increase) {
+              if (t.getIcons2()[index].icon == LucideIcons.indent) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.increaseIndent, null, null) ??
                     true;
@@ -1483,7 +1509,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   widget.controller.execCommand('indent');
                 }
               }
-              if (t.getIcons2()[index].icon == Icons.format_indent_decrease) {
+              if (t.getIcons2()[index].icon == LucideIcons.outdent) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.decreaseIndent, null, null) ??
                     true;
@@ -1782,7 +1808,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           renderBorder: widget.htmlToolbarOptions.renderBorder,
           textStyle: widget.htmlToolbarOptions.textStyle,
           onPressed: (int index) async {
-            if (t.getIcons()[index].icon == Icons.link) {
+            if (t.getIcons()[index].icon == LucideIcons.link) {
               var proceed = await widget.htmlToolbarOptions.onButtonPressed
                       ?.call(ButtonType.link, null, null) ??
                   true;
@@ -1942,7 +1968,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                     });
               }
             }
-            if (t.getIcons()[index].icon == Icons.image_outlined) {
+            if (t.getIcons()[index].icon == LucideIcons.image) {
               var proceed = await widget.htmlToolbarOptions.onButtonPressed
                       ?.call(ButtonType.picture, null, null) ??
                   true;
@@ -2130,7 +2156,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                     });
               }
             }
-            if (t.getIcons()[index].icon == Icons.audiotrack_outlined) {
+            if (t.getIcons()[index].icon == LucideIcons.music) {
               var proceed = await widget.htmlToolbarOptions.onButtonPressed
                       ?.call(ButtonType.audio, null, null) ??
                   true;
@@ -2294,7 +2320,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                     });
               }
             }
-            if (t.getIcons()[index].icon == Icons.videocam_outlined) {
+            if (t.getIcons()[index].icon == LucideIcons.video) {
               var proceed = await widget.htmlToolbarOptions.onButtonPressed
                       ?.call(ButtonType.video, null, null) ??
                   true;
@@ -2458,7 +2484,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                     });
               }
             }
-            if (t.getIcons()[index].icon == Icons.attach_file) {
+            if (t.getIcons()[index].icon == LucideIcons.paperclip) {
               var proceed = await widget.htmlToolbarOptions.onButtonPressed
                       ?.call(ButtonType.otherFile, null, null) ??
                   true;
@@ -2605,7 +2631,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                     });
               }
             }
-            if (t.getIcons()[index].icon == Icons.table_chart_outlined) {
+            if (t.getIcons()[index].icon == LucideIcons.table) {
               var proceed = await widget.htmlToolbarOptions.onButtonPressed
                       ?.call(ButtonType.table, null, null) ??
                   true;
@@ -2675,7 +2701,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                     });
               }
             }
-            if (t.getIcons()[index].icon == Icons.horizontal_rule) {
+            if (t.getIcons()[index].icon == LucideIcons.minus) {
               var proceed = await widget.htmlToolbarOptions.onButtonPressed
                       ?.call(ButtonType.hr, null, null) ??
                   true;
@@ -2716,7 +2742,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 });
               }
 
-              if (t.getIcons1()[index].icon == Icons.fullscreen) {
+              if (t.getIcons1()[index].icon == LucideIcons.maximize) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.fullscreen, _miscSelected[index],
                             updateStatus) ??
@@ -2726,7 +2752,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.code) {
+              if (t.getIcons1()[index].icon == LucideIcons.code) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.codeview, _miscSelected[index],
                             updateStatus) ??
@@ -2736,7 +2762,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   updateStatus();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.undo) {
+              if (t.getIcons1()[index].icon == LucideIcons.undo) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.undo, null, null) ??
                     true;
@@ -2744,7 +2770,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   widget.controller.undo();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.redo) {
+              if (t.getIcons1()[index].icon == LucideIcons.redo) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.redo, null, null) ??
                     true;
@@ -2752,7 +2778,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   widget.controller.redo();
                 }
               }
-              if (t.getIcons1()[index].icon == Icons.help_outline) {
+              if (t.getIcons1()[index].icon == LucideIcons.helpCircle) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.help, null, null) ??
                     true;
@@ -3023,7 +3049,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
             renderBorder: widget.htmlToolbarOptions.renderBorder,
             textStyle: widget.htmlToolbarOptions.textStyle,
             onPressed: (int index) async {
-              if (t.getIcons2()[index].icon == Icons.copy) {
+              if (t.getIcons2()[index].icon == LucideIcons.copy) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.copy, null, null) ??
                     true;
@@ -3032,7 +3058,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   await Clipboard.setData(ClipboardData(text: data));
                 }
               }
-              if (t.getIcons2()[index].icon == Icons.paste) {
+              if (t.getIcons2()[index].icon == LucideIcons.clipboardPaste) {
                 var proceed = await widget.htmlToolbarOptions.onButtonPressed
                         ?.call(ButtonType.paste, null, null) ??
                     true;
