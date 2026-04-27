@@ -1,3 +1,4 @@
+import 'package:html_editor_enhanced/src/widgets/custom_toggle_buttons.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'dart:convert';
 
@@ -339,8 +340,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           child: Opacity(
             opacity: _enabled ? 1 : 0.5,
             child: Container(
-              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null 
-                  ? widget.htmlToolbarOptions.color 
+              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null
+                  ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
               padding: const EdgeInsets.all(5.0),
@@ -364,8 +365,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           child: Opacity(
             opacity: _enabled ? 1 : 0.5,
             child: Container(
-              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null 
-                  ? widget.htmlToolbarOptions.color 
+              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null
+                  ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
               height: widget.htmlToolbarOptions.toolbarItemHeight + 15,
@@ -373,17 +374,20 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                 padding: const EdgeInsets.all(5.0),
                 child: IconTheme(
                   data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
-                  child: CustomScrollView(
-                    scrollDirection: Axis.horizontal,
-                    slivers: [
-                      SliverFillRemaining(
-                        hasScrollBody: false,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: _buildChildren(),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(minWidth: constraints.maxWidth),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: _buildChildren(),
+                          ),
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
               ),
@@ -399,8 +403,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           child: Opacity(
             opacity: _enabled ? 1 : 0.5,
             child: Container(
-              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null 
-                  ? widget.htmlToolbarOptions.color 
+              color: widget.htmlToolbarOptions.toolbarBoxDecoration == null
+                  ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
               constraints: BoxConstraints(
@@ -412,18 +416,19 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   ? Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: IconTheme(
-                        data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
+                        data: IconThemeData(
+                            size: widget.htmlToolbarOptions.iconSize),
                         child: Wrap(
                           runSpacing:
                               widget.htmlToolbarOptions.gridViewVerticalSpacing,
-                          spacing:
-                              widget.htmlToolbarOptions.gridViewHorizontalSpacing,
+                          spacing: widget
+                              .htmlToolbarOptions.gridViewHorizontalSpacing,
                           children: _buildChildren()
                             ..insert(
                                 0,
                                 Container(
-                                  height:
-                                      widget.htmlToolbarOptions.toolbarItemHeight,
+                                  height: widget
+                                      .htmlToolbarOptions.toolbarItemHeight,
                                   child: IconButton(
                                     icon: Icon(
                                       _isExpanded
@@ -441,7 +446,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                       if (kIsWeb) {
                                         widget.controller.recalculateHeight();
                                       } else {
-                                        await widget.controller.editorController!
+                                        await widget
+                                            .controller.editorController!
                                             .evaluateJavascript(
                                                 source:
                                                     "var height = \$('div.note-editable').outerHeight(true); window.flutter_inappwebview.callHandler('setHeight', height);");
@@ -455,35 +461,66 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   : Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: IconTheme(
-                        data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
-                        child: CustomScrollView(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          slivers: [
-                            SliverPersistentHeader(
-                              pinned: true,
-                              delegate: ExpandIconDelegate(
+                        data: IconThemeData(
+                            size: widget.htmlToolbarOptions.iconSize),
+                        child: Row(
+                          children: [
+                            Container(
+                              height:
                                   widget.htmlToolbarOptions.toolbarItemHeight,
-                                  _isExpanded, () async {
-                                setState(mounted, this.setState, () {
-                                  _isExpanded = !_isExpanded;
-                                });
-                                await Future.delayed(Duration(milliseconds: 100));
-                                if (kIsWeb) {
-                                  widget.controller.recalculateHeight();
-                                } else {
-                                  await widget.controller.editorController!
-                                      .evaluateJavascript(
-                                          source:
-                                              "var height = \$('div.note-editable').outerHeight(true); window.flutter_inappwebview.callHandler('setHeight', height);");
-                                }
-                              }),
+                              width:
+                                  widget.htmlToolbarOptions.toolbarItemHeight,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              child: IconButton(
+                                constraints: BoxConstraints(
+                                  maxHeight: widget
+                                      .htmlToolbarOptions.toolbarItemHeight,
+                                  maxWidth: widget
+                                      .htmlToolbarOptions.toolbarItemHeight,
+                                ),
+                                iconSize: widget
+                                        .htmlToolbarOptions.toolbarItemHeight *
+                                    3 /
+                                    5,
+                                icon: Icon(
+                                  _isExpanded
+                                      ? LucideIcons.chevronUp
+                                      : LucideIcons.chevronDown,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () async {
+                                  setState(mounted, this.setState, () {
+                                    _isExpanded = !_isExpanded;
+                                  });
+                                  await Future.delayed(
+                                      Duration(milliseconds: 100));
+                                  if (kIsWeb) {
+                                    widget.controller.recalculateHeight();
+                                  } else {
+                                    await widget.controller.editorController!
+                                        .evaluateJavascript(
+                                            source:
+                                                "var height = \$('div.note-editable').outerHeight(true); window.flutter_inappwebview.callHandler('setHeight', height);");
+                                  }
+                                },
+                              ),
                             ),
-                            SliverFillRemaining(
-                              hasScrollBody: false,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: _buildChildren(),
+                            Expanded(
+                              child: LayoutBuilder(
+                                builder: (context, constraints) {
+                                  return SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                          minWidth: constraints.maxWidth),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: _buildChildren(),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ],
@@ -918,7 +955,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
       }
       if (t is FontButtons) {
         if (t.bold || t.italic || t.underline || t.clearAll) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -984,11 +1022,17 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             },
             isSelected: _fontSelected,
-            children: t.getIcons1(),
+            children: t
+                .getIcons1()
+                .map((icon) => Icon(icon.icon,
+                    color: icon.color,
+                    size: widget.htmlToolbarOptions.iconSize))
+                .toList(),
           ));
         }
         if (t.strikethrough || t.superscript || t.subscript) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -1046,12 +1090,18 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             },
             isSelected: _miscFontSelected,
-            children: t.getIcons2(),
+            children: t
+                .getIcons2()
+                .map((icon) => Icon(icon.icon,
+                    color: icon.color,
+                    size: widget.htmlToolbarOptions.iconSize))
+                .toList(),
           ));
         }
       }
       if (t is ColorButtons && (t.foregroundColor || t.highlightColor)) {
-        toolbarChildren.add(ToggleButtons(
+        toolbarChildren.add(CustomToggleButtons(
+          spacing: widget.htmlToolbarOptions.buttonSpacing,
           constraints: BoxConstraints.tightFor(
             width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
             height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -1244,12 +1294,17 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
             }
           },
           isSelected: _colorSelected,
-          children: t.getIcons(),
+          children: t
+              .getIcons()
+              .map((icon) => Icon(icon.icon,
+                  color: icon.color, size: widget.htmlToolbarOptions.iconSize))
+              .toList(),
         ));
       }
       if (t is ListButtons) {
         if (t.ul || t.ol) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -1297,7 +1352,12 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             },
             isSelected: _listSelected,
-            children: t.getIcons(),
+            children: t
+                .getIcons()
+                .map((icon) => Icon(icon.icon,
+                    color: icon.color,
+                    size: widget.htmlToolbarOptions.iconSize))
+                .toList(),
           ));
         }
         if (t.listStyles) {
@@ -1408,7 +1468,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
       }
       if (t is ParagraphButtons) {
         if (t.alignLeft || t.alignCenter || t.alignRight || t.alignJustify) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -1477,11 +1538,17 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             },
             isSelected: _alignSelected,
-            children: t.getIcons1(),
+            children: t
+                .getIcons1()
+                .map((icon) => Icon(icon.icon,
+                    color: icon.color,
+                    size: widget.htmlToolbarOptions.iconSize))
+                .toList(),
           ));
         }
         if (t.increaseIndent || t.decreaseIndent) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -1519,7 +1586,12 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             },
             isSelected: List<bool>.filled(t.getIcons2().length, false),
-            children: t.getIcons2(),
+            children: t
+                .getIcons2()
+                .map((icon) => Icon(icon.icon,
+                    color: icon.color,
+                    size: widget.htmlToolbarOptions.iconSize))
+                .toList(),
           ));
         }
         if (t.lineHeight) {
@@ -1621,7 +1693,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           ));
         }
         if (t.textDirection) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -1788,7 +1861,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               t.link ||
               t.hr ||
               t.table)) {
-        toolbarChildren.add(ToggleButtons(
+        toolbarChildren.add(CustomToggleButtons(
+          spacing: widget.htmlToolbarOptions.buttonSpacing,
           constraints: BoxConstraints.tightFor(
             width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
             height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -2711,12 +2785,17 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
             }
           },
           isSelected: List<bool>.filled(t.getIcons().length, false),
-          children: t.getIcons(),
+          children: t
+              .getIcons()
+              .map((icon) => Icon(icon.icon,
+                  color: icon.color, size: widget.htmlToolbarOptions.iconSize))
+              .toList(),
         ));
       }
       if (t is OtherButtons) {
         if (t.fullscreen || t.codeview || t.undo || t.redo || t.help) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -3025,11 +3104,17 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             },
             isSelected: _miscSelected,
-            children: t.getIcons1(),
+            children: t
+                .getIcons1()
+                .map((icon) => Icon(icon.icon,
+                    color: icon.color,
+                    size: widget.htmlToolbarOptions.iconSize))
+                .toList(),
           ));
         }
         if (t.copy || t.paste) {
-          toolbarChildren.add(ToggleButtons(
+          toolbarChildren.add(CustomToggleButtons(
+            spacing: widget.htmlToolbarOptions.buttonSpacing,
             constraints: BoxConstraints.tightFor(
               width: widget.htmlToolbarOptions.toolbarItemHeight - 2,
               height: widget.htmlToolbarOptions.toolbarItemHeight - 2,
@@ -3072,7 +3157,12 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               }
             },
             isSelected: List<bool>.filled(t.getIcons2().length, false),
-            children: t.getIcons2(),
+            children: t
+                .getIcons2()
+                .map((icon) => Icon(icon.icon,
+                    color: icon.color,
+                    size: widget.htmlToolbarOptions.iconSize))
+                .toList(),
           ));
         }
       }

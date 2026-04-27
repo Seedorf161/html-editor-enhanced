@@ -195,6 +195,7 @@ class HtmlToolbarOptions {
     this.color,
     this.toolbarBoxDecoration,
     this.iconSize = 24,
+    this.buttonSpacing = 0.0,
   });
 
   /// Allows you to set the allowed extensions when a user inserts an audio file
@@ -409,6 +410,9 @@ class HtmlToolbarOptions {
   final Color? buttonSelectedBorderColor;
   final BorderRadius? buttonBorderRadius;
   final double? buttonBorderWidth;
+  
+  /// Sets the spacing between the individual icon buttons in the toolbar.
+  final double buttonSpacing;
 
   /// Allow the user to choose an image from their device when image selection
   /// is enabled. Inserting images via URL will still be possible if this is false.
