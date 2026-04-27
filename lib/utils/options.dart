@@ -194,6 +194,7 @@ class HtmlToolbarOptions {
     this.themeData,
     this.color,
     this.toolbarBoxDecoration,
+    this.toolbarPadding,
     this.iconSize = 24,
     this.buttonSpacing = 0.0,
   });
@@ -435,6 +436,9 @@ class HtmlToolbarOptions {
   /// This can be used to set a background color and a border separating the 
   /// toolbar from the field.
   final BoxDecoration? toolbarBoxDecoration;
+
+  /// Sets the padding of the toolbar.
+  final EdgeInsets? toolbarPadding;
 }
 
 /// Other options such as the height of the widget and the decoration surrounding it

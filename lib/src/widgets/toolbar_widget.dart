@@ -344,7 +344,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
-              padding: const EdgeInsets.all(5.0),
+              padding: widget.htmlToolbarOptions.toolbarPadding ??
+                  const EdgeInsets.all(5.0),
               child: IconTheme(
                 data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
                 child: Wrap(
@@ -369,9 +370,9 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
-              height: widget.htmlToolbarOptions.toolbarItemHeight + 15,
               child: Padding(
-                padding: const EdgeInsets.all(5.0),
+                padding: widget.htmlToolbarOptions.toolbarPadding ??
+                    const EdgeInsets.all(5.0),
                 child: IconTheme(
                   data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
                   child: LayoutBuilder(
@@ -407,14 +408,15 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
-              constraints: BoxConstraints(
-                maxHeight: _isExpanded
-                    ? MediaQuery.of(context).size.height
-                    : widget.htmlToolbarOptions.toolbarItemHeight + 15,
-              ),
+              constraints: _isExpanded
+                  ? BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height,
+                    )
+                  : null,
               child: _isExpanded
                   ? Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: widget.htmlToolbarOptions.toolbarPadding ??
+                          const EdgeInsets.all(5.0),
                       child: IconTheme(
                         data: IconThemeData(
                             size: widget.htmlToolbarOptions.iconSize),
@@ -459,7 +461,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                       ),
                     )
                   : Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: widget.htmlToolbarOptions.toolbarPadding ??
+                          const EdgeInsets.all(5.0),
                       child: IconTheme(
                         data: IconThemeData(
                             size: widget.htmlToolbarOptions.iconSize),
