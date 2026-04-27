@@ -80,8 +80,6 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
             color: Colors.grey,
             indent: 2,
             endIndent: 2,
-            // thickness: 1,
-            // width: 1,
           ),
           toolbarPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           toolbarBoxDecoration: BoxDecoration(
