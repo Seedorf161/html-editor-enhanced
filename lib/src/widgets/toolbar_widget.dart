@@ -370,26 +370,26 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
-              child: Padding(
-                padding: widget.htmlToolbarOptions.toolbarPadding ??
-                    const EdgeInsets.all(5.0),
-                child: IconTheme(
-                  data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: ConstrainedBox(
-                          constraints:
-                              BoxConstraints(minWidth: constraints.maxWidth),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: _buildChildren(),
-                          ),
+              alignment: Alignment.center,
+              padding: widget.htmlToolbarOptions.toolbarPadding ??
+                  const EdgeInsets.all(5.0),
+              child: IconTheme(
+                data: IconThemeData(size: widget.htmlToolbarOptions.iconSize),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: ConstrainedBox(
+                        constraints:
+                            BoxConstraints(minWidth: constraints.maxWidth),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: _buildChildren(),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -408,11 +408,8 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                   ? widget.htmlToolbarOptions.color
                   : null,
               decoration: widget.htmlToolbarOptions.toolbarBoxDecoration,
-              constraints: _isExpanded
-                  ? BoxConstraints(
-                      maxHeight: MediaQuery.of(context).size.height,
-                    )
-                  : null,
+              padding: widget.htmlToolbarOptions.toolbarPadding ??
+                  const EdgeInsets.all(5.0),
               child: _isExpanded
                   ? Padding(
                       padding: widget.htmlToolbarOptions.toolbarPadding ??
@@ -516,11 +513,11 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                                     child: ConstrainedBox(
                                       constraints: BoxConstraints(
                                           minWidth: constraints.maxWidth),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: _buildChildren(),
-                                      ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: _buildChildren(),
+                          ),
                                     ),
                                   );
                                 },
@@ -545,6 +542,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
         toolbarChildren.add(Container(
           padding: const EdgeInsets.only(left: 8.0),
           height: widget.htmlToolbarOptions.toolbarItemHeight,
+          alignment: Alignment.center,
           decoration: !widget.htmlToolbarOptions.renderBorder
               ? null
               : widget.htmlToolbarOptions.dropdownBoxDecoration ??
@@ -677,6 +675,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           toolbarChildren.add(Container(
             padding: const EdgeInsets.only(left: 8.0),
             height: widget.htmlToolbarOptions.toolbarItemHeight,
+            alignment: Alignment.center,
             decoration: !widget.htmlToolbarOptions.renderBorder
                 ? null
                 : widget.htmlToolbarOptions.dropdownBoxDecoration ??
@@ -759,6 +758,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           toolbarChildren.add(Container(
             padding: const EdgeInsets.only(left: 8.0),
             height: widget.htmlToolbarOptions.toolbarItemHeight,
+            alignment: Alignment.center,
             decoration: !widget.htmlToolbarOptions.renderBorder
                 ? null
                 : widget.htmlToolbarOptions.dropdownBoxDecoration ??
@@ -889,6 +889,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           toolbarChildren.add(Container(
             padding: const EdgeInsets.only(left: 8.0),
             height: widget.htmlToolbarOptions.toolbarItemHeight,
+            alignment: Alignment.center,
             decoration: !widget.htmlToolbarOptions.renderBorder
                 ? null
                 : widget.htmlToolbarOptions.dropdownBoxDecoration ??
@@ -1367,6 +1368,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           toolbarChildren.add(Container(
             padding: const EdgeInsets.only(left: 8.0),
             height: widget.htmlToolbarOptions.toolbarItemHeight,
+            alignment: Alignment.center,
             decoration: !widget.htmlToolbarOptions.renderBorder
                 ? null
                 : widget.htmlToolbarOptions.dropdownBoxDecoration ??
@@ -1601,6 +1603,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           toolbarChildren.add(Container(
             padding: const EdgeInsets.only(left: 8.0),
             height: widget.htmlToolbarOptions.toolbarItemHeight,
+            alignment: Alignment.center,
             decoration: !widget.htmlToolbarOptions.renderBorder
                 ? null
                 : widget.htmlToolbarOptions.dropdownBoxDecoration ??
@@ -1758,6 +1761,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           toolbarChildren.add(Container(
             padding: const EdgeInsets.only(left: 8.0),
             height: widget.htmlToolbarOptions.toolbarItemHeight,
+            alignment: Alignment.center,
             decoration: !widget.htmlToolbarOptions.renderBorder
                 ? null
                 : widget.htmlToolbarOptions.dropdownBoxDecoration ??
@@ -3195,7 +3199,12 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
     }
     if (widget.htmlToolbarOptions.renderSeparatorWidget) {
       toolbarChildren = intersperse(
-              widget.htmlToolbarOptions.separatorWidget, toolbarChildren)
+              Container(
+                height: widget.htmlToolbarOptions.toolbarItemHeight,
+                alignment: Alignment.center,
+                child: widget.htmlToolbarOptions.separatorWidget,
+              ),
+              toolbarChildren)
           .toList();
     }
     return toolbarChildren;
